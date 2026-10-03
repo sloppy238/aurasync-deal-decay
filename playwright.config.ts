@@ -9,6 +9,11 @@ export default defineConfig({
     headless: true,
     viewport: { width: 1440, height: 1000 },
     browserName: "chromium",
-    launchOptions: { executablePath: "/usr/bin/chromium", args: ["--no-sandbox"] },
+    launchOptions: {
+      ...(process.env.PLAYWRIGHT_CHROMIUM_EXECUTABLE
+        ? { executablePath: process.env.PLAYWRIGHT_CHROMIUM_EXECUTABLE }
+        : {}),
+      ...(process.platform === "linux" ? { args: ["--no-sandbox"] } : {}),
+    },
   },
 });

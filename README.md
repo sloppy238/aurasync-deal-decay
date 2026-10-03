@@ -18,7 +18,7 @@ AuraSync is a privacy-first **Deal Decay Detection MVP** for revenue leaders. Th
 | Executive command | Keyboard-accessible intelligence navigation with `Ctrl/Cmd + K`, route context, and metadata-current posture |
 | Signature visual system | Aura signal fields, orbital relationship geometry, provenance trails, and a disciplined cyan/purple intelligence palette |
 | Easy setup import | Local-first Salesforce opportunity and Gmail activity CSV import with templates, contract previews, blocked content fields, and safe staging summaries |
-| Drift check-ins | A manual-first personal mode for user-chosen check-in dates, locally stored reminders, calendar export, and user-controlled data export/removal |
+| Drift check-ins | A manual-first personal mode for chosen reminders, private notes, to-dos, shared plans, browser notifications, calendar export, CSV/JSON transfer, and local data removal |
 
 ## Deal Decay Model
 
@@ -40,7 +40,7 @@ The score is intended as an **operating indicator**, not an assessment of employ
 
 The frontend uses React, TypeScript, Tailwind CSS, shadcn components, Recharts, and tRPC. The server uses Express, tRPC, Drizzle, and MySQL. Shared score and privacy contracts live in `shared/riskModel.ts`; seeded workspace data lives in `server/demoData.ts`; typed read procedures live in `server/routers/aurasync.ts`.
 
-Drift is available at `/drift` as a separate mode in the existing web application. Its first validation MVP stores only the names, cadence selections, reminder dates, and check-in dates the user enters in browser local storage. It does not read contacts, messages, or OAuth data. Reminders appear in the app when opened; users may optionally download a calendar event for a date they chose. Data can be exported as JSON or deleted from the device. This web target is not an App Store submission.
+Drift is available at `/drift` as a separate mode in the existing web application. It stores the names, cadence selections, notes, plans, tasks, and dates the user chooses in browser local storage. It does not read the address book, messages, or OAuth data. Recurring reminders and browser notifications are opt-in; browser notifications are evaluated while the app is open. Users may also download a calendar event for a chosen date, import a CSV template or JSON backup, export data, or delete the local list. This web target is not an App Store submission, and it does not provide cross-device sync.
 
 The database schema includes workspaces, deals, deal signals, integrations, and governance policies. The current MVP serves a read-only seeded workspace and a local-first CSV import path so stakeholders can evaluate the workflow before live provider credentials are introduced. Raw CSV files are parsed in the browser; only validation summaries are staged through tRPC.
 
@@ -48,8 +48,8 @@ The database schema includes workspaces, deals, deal signals, integrations, and 
 
 | Validation layer | Result |
 | --- | --- |
-| Vitest unit and API coverage | 23 tests passing |
-| Browser interaction and accessibility QA | Drift flow added to Playwright coverage; full CLI run unavailable because the configured `/usr/bin/chromium` binary is absent on Windows |
+| Vitest unit and API coverage | 26 tests passing |
+| Browser interaction and accessibility QA | 26 Playwright tests passing, including Drift reminder, import, migration, and persistence flows |
 | TypeScript | No type errors |
 | Production build | Successful |
 | Responsive review | Drift reviewed at desktop and 390-pixel mobile widths |

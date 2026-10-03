@@ -26,13 +26,15 @@ Drift is a separate mode in the existing AuraSync web application. A first-time 
 
 - Add, edit, pause, and remove a relationship.
 - Record a user-reported cadence and last meaningful connection.
-- Set an optional, user-chosen reminder date; allow marking a reminder done or snoozing it.
-- Provide a manual check-in log and a clear explanation of any reminder timing.
+- Set an optional, user-chosen reminder date; allow marking a reminder done or snoozing it. Repeating reminders are opt-in and use the cadence the user selected.
+- Keep private local notes, small personal tasks, and shared plans beside each chosen relationship.
+- Enable browser notifications only after explicit permission; they are checked while Drift is open. Calendar events are a user-triggered alternative.
+- Import an explicitly selected CSV template or JSON backup, with parsing in the browser; provide a manual check-in log and a clear explanation of reminder timing.
 - Export and delete locally stored Drift data.
-- No contact-list import, message access, OAuth integration, automated inference, relationship score, or push notification by default.
+- No address-book import, message access, OAuth integration, automated inference, relationship score, or notification by default.
 - Existing AuraSync deal-intelligence routes and workflows remain unchanged.
 - App Store distribution is not in scope for this web target.
-- Open decision: whether a later test should add accounts or server-side retention analytics.
+- Cross-device account sync and server-side analytics remain open decisions, requiring a separate privacy and consent design.
 
 ## Brand Commitments
 
