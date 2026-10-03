@@ -1,0 +1,49 @@
+# Project TODO
+
+- [x] Define the AuraSync metadata-only domain model and privacy boundary in shared application types
+- [x] Implement deterministic deal decay scoring from response latency, engagement decline, stakeholder coverage, and communication gaps
+- [x] Build seeded demo workspace data with portfolio metrics, prioritized alerts, CRM deals, stakeholder activity, integrations, and governance status
+- [x] Create an elegant responsive executive dashboard with portfolio health, at-risk counts, trend metrics, risk distribution, pipeline exposure, and prioritized alerts
+- [x] Create a deals portfolio view with search, filtering, sortable risk indicators, and accessible deal navigation
+- [x] Create deal detail views with explainable score composition, metadata evidence timeline, stakeholder coverage, and recommended next actions
+- [x] Create an integration framework view for Gmail, Outlook, Slack, Teams, Salesforce, and HubSpot with connection and sync status
+- [x] Create privacy and governance controls documenting collection boundaries, connected sources, retention posture, access controls, and signal provenance
+- [x] Enforce metadata-only language and structures throughout the UI and backend with no message subject, body, transcript, attachment, or content fields
+- [x] Add typed read-only demo API procedures for dashboard, deal portfolio, deal detail, integrations, and governance data
+- [x] Add persistent database schema for workspaces, deals, deal signals, integrations, and governance policies
+- [x] Generate and apply the database migration while keeping schema and deployed database synchronized
+- [x] Add Vitest coverage for decay-score calculations, 30-day stall forecasting, metadata-only invariants, and application procedures
+- [x] Verify responsive desktop and mobile layouts, interaction states, navigation, accessibility, and browser console health
+- [x] Run explicit keyboard focus, semantic labeling, representative contrast, dialog, filtering, sorting, navigation, and action-feedback browser QA
+- [x] Review the complete TODO list and finalize project documentation for the first complete checkpoint
+- [x] Save the first complete project checkpoint
+- [x] Elevate the global visual system with premium depth, sharper typography, refined surfaces, and executive-grade spacing
+- [x] Add an executive command bar with workspace context, live-sync posture, and fast navigation cues
+- [x] Upgrade portfolio storytelling with a premium health hero, clearer directional indicators, and more decisive risk prioritization
+- [x] Refine deal, integration, and governance pages with richer hierarchy, polished micro-interactions, and consistent elite presentation
+- [x] Preserve and revalidate the strict metadata-only boundary throughout the upgraded experience
+- [x] Re-run unit, browser accessibility, responsive visual, type, build, and runtime validation
+- [x] Save and deliver the elite AuraSync checkpoint
+- [x] Evaluate least-privilege Gmail and Salesforce metadata scopes with explicit prohibited content fields; live OAuth remains optional and deferred for the easier setup
+- [x] Defer persistent OAuth authorization and live synchronization state until live credentials are explicitly supplied
+- [x] Define the safe typed API boundary for local import validation and import staging
+- [x] Build a guided local-first Salesforce and Gmail metadata import workflow with transparent privacy states
+- [x] Preserve opportunity/contact-role and participant/thread metadata contracts for future mapping review
+- [x] Add import validation counts and error states without exposing credentials or message content
+- [x] Preserve and test the strict content-exclusion boundary across CSV import contracts and staged summaries
+- [x] Revalidate unit, browser accessibility, responsive visual, type, build, and runtime quality after the CSV import upgrade
+- [x] Save and deliver the CSV metadata import checkpoint
+- [x] Introduce a distinctive relationship-momentum visual signature that makes AuraSync immediately recognizable and avoids generic SaaS styling
+- [x] Preserve the stable pre-frontend-expansion checkpoint at version 2323fdfa
+
+- [x] Add imported-row mapping review with confidence, source provenance, and metadata-only field preview
+- [x] Add staged import history with source, row counts, status, and timestamps
+- [x] Add refresh and CSV diff reporting for added, changed, removed, and unchanged metadata rows
+- [x] Add polished frontend success, error, empty, and privacy states for the complete import workflow
+- [x] Revalidate the complete frontend workflow across unit tests, browser QA, responsive visuals, type checks, build, and runtime health
+- [x] Save and deliver the complete AuraSync frontend checkpoint
+
+- [x] Show explicit total row counts in staged import history cards
+- [x] Add explicit empty states for import history and mapping preview when no data is available
+- [x] Perform final runtime-health inspection after the frontend expansion
+- [x] Save and publish a new checkpoint for the completed frontend workflow
