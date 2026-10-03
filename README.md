@@ -50,12 +50,13 @@ The database schema includes workspaces, deals, deal signals, integrations, and 
 | --- | --- |
 | Vitest unit and API coverage | 26 tests passing |
 | Browser interaction and accessibility QA | 26 Playwright tests passing, including Drift reminder, import, migration, and persistence flows |
+| GitHub Actions CI | Pull requests run type checks, unit/API tests, production build, and Chromium-backed Playwright QA |
 | TypeScript | No type errors |
 | Production build | Successful |
 | Responsive review | Drift reviewed at desktop and 390-pixel mobile widths |
 | Runtime console and requests | No Drift browser-console errors after removing the unconfigured analytics script request |
 
-The browser QA covers page landmarks, named controls, visible keyboard focus, representative text contrast, deal search/filter/sort, route transitions, executive command search, integration dialog behavior, visible feedback for intervention actions, CSV template download, valid Salesforce staging, blocked Gmail content columns, oversized-file handling, and Drift's local reminder/check-in flow.
+The browser QA covers page landmarks, named controls, visible keyboard focus, representative text contrast, deal search/filter/sort, route transitions, executive command search, integration dialog behavior, visible feedback for intervention actions, CSV template download, valid Salesforce staging, blocked Gmail content columns, oversized-file handling, and Drift's local reminder/check-in, import, and migration flows.
 
 ## Run Locally
 
