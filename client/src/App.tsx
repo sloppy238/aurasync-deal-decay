@@ -14,6 +14,7 @@ import ErrorBoundary from "./components/ErrorBoundary";
 import DashboardLayout from "./components/DashboardLayout";
 import { ThemeProvider } from "./contexts/ThemeContext";
 import Home from "./pages/Home";
+import Drift from "./pages/Drift";
 
 function Router() {
   // make sure to consider if you need authentication for certain routes
@@ -21,6 +22,7 @@ function Router() {
     <DashboardLayout>
       <Switch>
         <Route path="/" component={Home} />
+        <Route path="/drift" component={Drift} />
         <Route path="/deals" component={Deals} />
         <Route path="/command-center" component={CommandCenter} />
         <Route path="/signal-lab" component={SignalLab} />

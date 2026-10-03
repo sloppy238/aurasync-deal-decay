@@ -5,10 +5,24 @@ export default defineConfig({
   timeout: 30_000,
   fullyParallel: false,
   workers: 1,
+  ...(process.env.CI
+    ? {
+        webServer: {
+          command: "pnpm dev",
+          url: "http://127.0.0.1:3000",
+          timeout: 60_000,
+        },
+      }
+    : {}),
   use: {
     headless: true,
     viewport: { width: 1440, height: 1000 },
     browserName: "chromium",
-    launchOptions: { executablePath: "/usr/bin/chromium", args: ["--no-sandbox"] },
+    launchOptions: {
+      ...(process.env.PLAYWRIGHT_CHROMIUM_EXECUTABLE
+        ? { executablePath: process.env.PLAYWRIGHT_CHROMIUM_EXECUTABLE }
+        : {}),
+      ...(process.platform === "linux" ? { args: ["--no-sandbox"] } : {}),
+    },
   },
 });
