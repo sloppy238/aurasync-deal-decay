@@ -1,6 +1,6 @@
 import { expect, test } from "@playwright/test";
 
-const paths = ["/", "/command-center", "/signal-lab", "/relationship-graph", "/review-room", "/deals", "/deals/deal-nimbus", "/integrations", "/governance"];
+const paths = ["/", "/drift", "/command-center", "/signal-lab", "/relationship-graph", "/review-room", "/deals", "/deals/deal-nimbus", "/integrations", "/governance"];
 
 function relativeLuminance(rgb: string) {
   const values = rgb.match(/[\d.]+/g)?.slice(0, 3).map(Number) ?? [0, 0, 0];
@@ -44,6 +44,26 @@ test.describe("AuraSync accessibility and interaction QA", () => {
       expect(focusIsVisible).toBe(true);
     });
   }
+
+  test("Drift keeps chosen reminders local and records a manual check-in", async ({ page }) => {
+    await page.goto("http://127.0.0.1:3000/drift");
+    await page.waitForLoadState("networkidle");
+    await page.getByRole("button", { name: "Add the first person" }).click();
+    await page.getByLabel("Name").fill("Maya");
+    await page.getByLabel("Remind me on (optional)").fill(new Date().toLocaleDateString("en-CA"));
+    await page.getByRole("button", { name: "Add to my list" }).click();
+
+    await expect(page.getByRole("heading", { name: "Maya" })).toBeVisible();
+    await expect(page.getByText("You planned a check-in for", { exact: false })).toBeVisible();
+    const saved = await page.evaluate(() => localStorage.getItem("drift.relationships.v1"));
+    expect(saved).toContain("Maya");
+
+    await page.getByRole("button", { name: "I checked in" }).click();
+    await expect(page.getByText("Check-in with Maya recorded. No next reminder is set.")).toBeVisible();
+    await page.reload();
+    await expect(page.getByText("No reminder planned")).toBeVisible();
+    await expect(page.getByText("Last check-in Today")).toBeVisible();
+  });
 
   test("key text samples meet readable contrast", async ({ page }) => {
     await page.goto("http://127.0.0.1:3000/governance");
@@ -241,4 +261,3 @@ test.describe("AuraSync import operations QA", () => {
     await expect(page.getByText("Unchanged", { exact: true })).toBeVisible();
   });
 });
-

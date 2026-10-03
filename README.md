@@ -18,6 +18,7 @@ AuraSync is a privacy-first **Deal Decay Detection MVP** for revenue leaders. Th
 | Executive command | Keyboard-accessible intelligence navigation with `Ctrl/Cmd + K`, route context, and metadata-current posture |
 | Signature visual system | Aura signal fields, orbital relationship geometry, provenance trails, and a disciplined cyan/purple intelligence palette |
 | Easy setup import | Local-first Salesforce opportunity and Gmail activity CSV import with templates, contract previews, blocked content fields, and safe staging summaries |
+| Drift check-ins | A manual-first personal mode for user-chosen check-in dates, locally stored reminders, calendar export, and user-controlled data export/removal |
 
 ## Deal Decay Model
 
@@ -39,20 +40,22 @@ The score is intended as an **operating indicator**, not an assessment of employ
 
 The frontend uses React, TypeScript, Tailwind CSS, shadcn components, Recharts, and tRPC. The server uses Express, tRPC, Drizzle, and MySQL. Shared score and privacy contracts live in `shared/riskModel.ts`; seeded workspace data lives in `server/demoData.ts`; typed read procedures live in `server/routers/aurasync.ts`.
 
+Drift is available at `/drift` as a separate mode in the existing web application. Its first validation MVP stores only the names, cadence selections, reminder dates, and check-in dates the user enters in browser local storage. It does not read contacts, messages, or OAuth data. Reminders appear in the app when opened; users may optionally download a calendar event for a date they chose. Data can be exported as JSON or deleted from the device. This web target is not an App Store submission.
+
 The database schema includes workspaces, deals, deal signals, integrations, and governance policies. The current MVP serves a read-only seeded workspace and a local-first CSV import path so stakeholders can evaluate the workflow before live provider credentials are introduced. Raw CSV files are parsed in the browser; only validation summaries are staged through tRPC.
 
 ## Validation
 
 | Validation layer | Result |
 | --- | --- |
-| Vitest unit and API coverage | 16 tests passing |
-| Browser interaction and accessibility QA | 13 tests passing |
+| Vitest unit and API coverage | 23 tests passing |
+| Browser interaction and accessibility QA | Drift flow added to Playwright coverage; full CLI run unavailable because the configured `/usr/bin/chromium` binary is absent on Windows |
 | TypeScript | No type errors |
 | Production build | Successful |
-| Responsive review | Verified across desktop and 390-pixel mobile layouts |
-| Runtime console and requests | No recent browser errors or failed API requests |
+| Responsive review | Drift reviewed at desktop and 390-pixel mobile widths |
+| Runtime console and requests | No Drift browser-console errors after removing the unconfigured analytics script request |
 
-The browser QA covers page landmarks, named controls, visible keyboard focus, representative text contrast, deal search/filter/sort, route transitions, executive command search, integration dialog behavior, visible feedback for intervention actions, CSV template download, valid Salesforce staging, blocked Gmail content columns, and oversized-file handling.
+The browser QA covers page landmarks, named controls, visible keyboard focus, representative text contrast, deal search/filter/sort, route transitions, executive command search, integration dialog behavior, visible feedback for intervention actions, CSV template download, valid Salesforce staging, blocked Gmail content columns, oversized-file handling, and Drift's local reminder/check-in flow.
 
 ## Run Locally
 

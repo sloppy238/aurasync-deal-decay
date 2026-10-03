@@ -23,7 +23,7 @@ import {
 } from "@/components/ui/sidebar";
 import { startLogin } from "@/const";
 import { useIsMobile } from "@/hooks/useMobile";
-import { Beaker, BriefcaseBusiness, Cable, ClipboardCheck, FlaskConical, LayoutDashboard, LogIn, LogOut, Network, PanelLeft, ShieldCheck } from "lucide-react";
+import { Beaker, BriefcaseBusiness, Cable, ClipboardCheck, FlaskConical, Heart, LayoutDashboard, LogIn, LogOut, Network, PanelLeft, ShieldCheck } from "lucide-react";
 import { CSSProperties, useEffect, useRef, useState } from "react";
 import { useLocation } from "wouter";
 import { Button } from "./ui/button";
@@ -87,9 +87,12 @@ function DashboardLayoutContent({
   const [location, setLocation] = useLocation();
   const { state, toggleSidebar } = useSidebar();
   const isCollapsed = state === "collapsed";
+  const isDriftMode = location === "/drift";
   const [isResizing, setIsResizing] = useState(false);
   const sidebarRef = useRef<HTMLDivElement>(null);
-  const activeMenuItem = menuItems.find(item => item.path === location || (item.path !== "/" && location.startsWith(item.path)));
+  const activeMenuItem = location.startsWith("/drift")
+    ? { label: "Drift" }
+    : menuItems.find(item => item.path === location || (item.path !== "/" && location.startsWith(item.path)));
   const isMobile = useIsMobile();
 
   useEffect(() => {
@@ -150,6 +153,20 @@ function DashboardLayoutContent({
           </SidebarHeader>
 
           <SidebarContent className="gap-0 pt-5">
+            {!isCollapsed ? <p className="px-5 pb-2 text-[9px] font-semibold uppercase tracking-[0.2em] text-slate-600">Personal</p> : null}
+            <SidebarMenu className="px-2 py-1">
+              <SidebarMenuItem>
+                <SidebarMenuButton
+                  isActive={location === "/drift"}
+                  onClick={() => setLocation("/drift")}
+                  tooltip="Drift"
+                  className="h-10 rounded-xl font-medium text-slate-300 transition-all hover:bg-white/8 hover:text-white data-[active=true]:bg-white/10 data-[active=true]:text-white"
+                >
+                  <Heart className={`h-4 w-4 ${location === "/drift" ? "text-cyan-300" : "text-slate-400"}`} />
+                  <span>Drift check-ins</span>
+                </SidebarMenuButton>
+              </SidebarMenuItem>
+            </SidebarMenu>
             {!isCollapsed ? <p className="px-5 pb-2 text-[9px] font-semibold uppercase tracking-[0.2em] text-slate-600">Intelligence</p> : null}
             <SidebarMenu className="px-2 py-1">
               {menuItems.map(item => {
@@ -177,12 +194,14 @@ function DashboardLayoutContent({
             {!isCollapsed ? (
               <div className="mb-3 rounded-xl border border-white/10 bg-white/[0.04] p-3">
                 <div className="mb-1.5 flex items-center gap-2 text-[10px] font-semibold uppercase tracking-[0.16em] text-cyan-300">
-                  <ShieldCheck className="size-3" /> Demo workspace
+                  <ShieldCheck className="size-3" /> {isDriftMode ? "Personal mode" : "Demo workspace"}
                 </div>
-                <p className="text-[11px] leading-4 text-slate-400">Seeded metadata. No message content.</p>
+                <p className="text-[11px] leading-4 text-slate-400">
+                  {isDriftMode ? "Check-ins saved on this device." : "Seeded metadata. No message content."}
+                </p>
               </div>
             ) : null}
-            <DropdownMenu>
+            {!isDriftMode ? <DropdownMenu>
               <DropdownMenuTrigger asChild>
                 <button className="flex items-center gap-3 rounded-lg px-1 py-1 hover:bg-accent/50 transition-colors w-full text-left group-data-[collapsible=icon]:justify-center focus:outline-none focus-visible:ring-2 focus-visible:ring-ring">
                   <Avatar className="h-9 w-9 shrink-0 border border-white/10">
@@ -213,7 +232,7 @@ function DashboardLayoutContent({
                   </DropdownMenuItem>
                 )}
               </DropdownMenuContent>
-            </DropdownMenu>
+            </DropdownMenu> : null}
           </SidebarFooter>
         </Sidebar>
         <div
@@ -241,7 +260,7 @@ function DashboardLayoutContent({
             </div>
           </div>
         )}
-        <ExecutiveCommandBar />
+        {!isDriftMode ? <ExecutiveCommandBar /> : null}
         <main className="aura-canvas flex-1 overflow-x-hidden p-4 sm:p-6 xl:p-8">{children}</main>
       </SidebarInset>
     </>
